@@ -6,7 +6,6 @@ Conducted and developed by:
 
 Under the guidance of professor: 
 - Luca Pappalardo 
-- https://lucapappalardo.com/
 @ Università di Pisa, Italy
 Geospatial Analytics
 ================================================================================================================
