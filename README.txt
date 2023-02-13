@@ -1,4 +1,4 @@
-===================================================================================================
+=================================================================================================================================================
 Exploration and Preferential Return (EPR), a generative human mobility model and comparison of some of its variants.
 
 Conducted and developed by:
@@ -9,7 +9,7 @@ Under the guidance of professor:
 - https://lucapappalardo.com/
 @ Università di Pisa, Italy
 Geospatial Analytics
-===================================================================================================
+=================================================================================================================================================
 
 This project aims to present a systematic comparison of EPR models to produce synthetic trajectories of human mobility, reproducing the movements of an individual in a realistic manner. 3 variants of this model are presented:
 
