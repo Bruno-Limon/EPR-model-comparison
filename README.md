@@ -9,6 +9,8 @@ Under the guidance of professors:
 @ Università di Pisa, Italy
 Geospatial Analytics Course
 
+<img alt="License" src="https://img.shields.io/badge/license-MIT-brightgreen"> <img alt="Python" src="https://img.shields.io/badge/python->=3.8-blue">
+
 <!-- --------------------------------------------------------------------------------------- -->
 <!-- TABLE OF CONTENTS -->
 <details>
@@ -78,6 +80,3 @@ Bruno Limon
 ## Acknowledgements
 
 - <a href="https://scikit-mobility.github.io/scikit-mobility/"> Scikit-mobility</a>
-
-<img alt="License" src="https://img.shields.io/badge/license-MIT-brightgreen"> <img alt="Python" src="https://img.shields.io/badge/python->=3.8-blue">
-
