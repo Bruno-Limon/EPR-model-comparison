@@ -16,11 +16,11 @@ Geospatial Analytics Course
 <details>
   <summary>Table of Contents</summary>
   <ol>
-    <li><a href="#Introduction">Introduction</a></li>
-    <li><a href="#Method">Method</a></li>
-    <li><a href="#Results">Results</a></li>
-    <li><a href="#Contact">Contact</a></li>
-    <li><a href="#Acknowledgements">Acknowledgements</a></li>
+    <li><a href = "#Introduction">Introduction</a></li>
+    <li><a href = "#Method">Method</a></li>
+    <li><a href = "#Results">Results</a></li>
+    <li><a href = "#Contact">Contact</a></li>
+    <li><a href = "#Acknowledgements">Acknowledgements</a></li>
   </ol>
 </details>
 
@@ -59,12 +59,12 @@ While the tessellations are as follows:
 3. Official, representing administrative divisions such as neighborhoods or counties
 4. Voronoi, build from points of interest within the geo area, such as health care facilities
 
-<img alt="voronoi tessellations" src="readme-assets/tess-official.png">
-<img alt="jurisdictional tessellation" src="readme-assets/tess-voronoi.png">
+<img alt = "voronoi tessellations" src = "readme-assets/tess-official.png">
+<img alt = "jurisdictional tessellation" src = "readme-assets/tess-voronoi.png">
 
 Furthermore, a set of real trajectory datasets has been obtained for each area, with social media check-ins for area 1 and 3 and taxi cab gps trajectories for areas 2 and 4.
 
-<img alt="voronoi tessellations" src="readme-assets/trajectories-SF.png">
+<img alt = "trajectories in San Francisco" src = "readme-assets/trajectories-SF.png">
 
 Then, 3 models, namely S-EPR, D-EPR and ditras are built and used to generate a set of trajectories for each pair of areas and tessellations, which will then be compared both quantitatively by the distributions of their measures and their root mean squared error as well as qualitatively through the use of plotting.
 Throughout this project, the notation 'a1[]_t[]' is used to identify the area and its tessellation, for example 'a1_t1' would correspond to New York State with squared tessellation.
@@ -75,7 +75,7 @@ Throughout this project, the notation 'a1[]_t[]' is used to identify the area an
 Overall, all three models perform relative well, with measures such as M1 and M6 with good results all-around, regardless of area, tessellation or model, while for some other measures, such as M4 and M5, the synthetic distributions greatly differ from those observed on the real trajectories. However, Ditras and D-EPR seem to perform better, as their distributions at least somewhat resemble the power-law distribution expected of measures such as M3 for example, whereas S-EPR produces a completely different type of distribution.
 All in all, as expected, the S-EPR model and its trajectories seem to be the worst performing due to their lack of spatio-temporal awareness, which D-EPR and Ditras seem to solve.
 
-<img alt="voronoi tessellations" src="readme-assets/results-a1_t1.png">
+<img alt = "voronoi tessellations" src = "readme-assets/results-a1_t1.png">
 
 <!-- --------------------------------------------------------------------------------------- -->
 ## Contact
@@ -86,4 +86,4 @@ Bruno Limon
 <!-- --------------------------------------------------------------------------------------- -->
 ## Acknowledgements
 
-- <a href="https://scikit-mobility.github.io/scikit-mobility/"> Scikit-mobility</a>
+- <a href = "https://scikit-mobility.github.io/scikit-mobility/"> Scikit-mobility</a>
