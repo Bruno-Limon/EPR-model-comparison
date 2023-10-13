@@ -3,21 +3,21 @@
 
 # %%
 # In case of running on Google Colab
-%%capture
-!apt-get install -qq curl g++ make
-!curl -L http://download.osgeo.org/libspatialindex/spatialindex-src-1.8.5.tar.gz | tar xz
-import os
-os.chdir('spatialindex-src-1.8.5')
-!./configure
-!make
-!make install
-!pip install rtree
-!ldconfig
-!pip install scikit-mobility
+# %%capture
+# !apt-get install -qq curl g++ make
+# !curl -L http://download.osgeo.org/libspatialindex/spatialindex-src-1.8.5.tar.gz | tar xz
+# import os
+# os.chdir('spatialindex-src-1.8.5')
+# !./configure
+# !make
+# !make install
+# !pip install rtree
+# !ldconfig
+# !pip install scikit-mobility
 
-!pip install geovoronoi
-# Specifying pandas' version to overcome issue with 'TrajDataFrame' object has no attribute '_crs' during preprocessing phase
-!pip install pandas==1.5.3
+# !pip install geovoronoi
+# # Specifying pandas' version to overcome issue with 'TrajDataFrame' object has no attribute '_crs' during preprocessing phase
+# !pip install pandas==1.5.3
 
 # %%
 import numpy as np
@@ -53,7 +53,7 @@ sns.set_style("whitegrid", {'grid.linestyle': '--', 'alpha': 0.25})
 sns.set_style({'font.family':'serif', 'font.serif':'Computer Modern'})
 
 # %%
-np.seterr(divide = 'ignore') 
+np.seterr(divide = 'ignore')
 
 # %% [markdown]
 # ## **<font color="#84f745">0.2 FUNCTIONS</font>**
@@ -64,13 +64,13 @@ def compute_measures(Traj):
     m1 = jump_lengths(Traj, show_progress = False, merge=True)
     m1 = [m for m in m1 if m >= 1]
 
-    m2 = list(radius_of_gyration(Traj, show_progress = False)['radius_of_gyration']) 
+    m2 = list(radius_of_gyration(Traj, show_progress = False)['radius_of_gyration'])
     m2 = [m for m in m2 if m >= 1]
 
-    m3 = list(uncorrelated_entropy(Traj, show_progress = False)['uncorrelated_entropy']) 
+    m3 = list(uncorrelated_entropy(Traj, show_progress = False)['uncorrelated_entropy'])
     m3 = [m for m in m3 if m > 0]
 
-    m4 = list(number_of_locations(Traj, show_progress = False)['number_of_locations']) 
+    m4 = list(number_of_locations(Traj, show_progress = False)['number_of_locations'])
     m4 = [m for m in m4 if m > 0]
 
     m5 = list(visits_per_location(Traj)['n_visits'])
@@ -87,7 +87,7 @@ def compute_measures(Traj):
 
     # Stats for previously computed measures
     for m in list_measures:
-        list_min.append(round(min(m),4)) 
+        list_min.append(round(min(m),4))
         list_max.append(round(max(m),4))
         list_avg.append(round(np.mean(m),4))
         list_std.append(round(np.std(m),4))
@@ -120,11 +120,11 @@ def build_model(area_tessellation, n_agents, n_individuals):
     # SEPR MODEL
     print('Building S-EPR model for {}'.format(dict_area_tess_names[area_tessellation]))
     sepr_model = SpatialEPR()
-    sepr_tdf = sepr_model.generate(start_date = start_time, 
-                                   end_date = end_time, 
-                                   spatial_tessellation = dict_tessellations[area_tessellation], 
+    sepr_tdf = sepr_model.generate(start_date = start_time,
+                                   end_date = end_time,
+                                   spatial_tessellation = dict_tessellations[area_tessellation],
                                    n_agents = n_agents,
-                                   show_progress = True, 
+                                   show_progress = True,
                                    random_state = 42)
     print('\nS-EPR measures:')
     sepr_measures = compute_measures(sepr_tdf)
@@ -132,13 +132,13 @@ def build_model(area_tessellation, n_agents, n_individuals):
     # DEPR MODEL
     print('\nBuilding D-EPR model for {}'.format(dict_area_tess_names[area_tessellation]))
     depr_model = DensityEPR()
-    depr_tdf = depr_model.generate(start_date = start_time, 
-                                   end_date = end_time, 
-                                   spatial_tessellation = dict_weighted_tess[area_tessellation], 
-                                   relevance_column = 'relevance', 
+    depr_tdf = depr_model.generate(start_date = start_time,
+                                   end_date = end_time,
+                                   spatial_tessellation = dict_weighted_tess[area_tessellation],
+                                   relevance_column = 'relevance',
                                    n_agents = n_agents,
-                                   show_progress = True, 
-                                   random_state = 42)   
+                                   show_progress = True,
+                                   random_state = 42)
     print('\nD-EPR measures:')
     depr_measures = compute_measures(depr_tdf)
 
@@ -153,13 +153,13 @@ def build_model(area_tessellation, n_agents, n_individuals):
 
     ditras_model = Ditras(mdg)
 
-    ditras_tdf = ditras_model.generate(start_date = start_time, 
-                                       end_date = end_time, 
-                                       spatial_tessellation = dict_weighted_tess[area_tessellation], 
-                                       relevance_column = 'relevance', 
+    ditras_tdf = ditras_model.generate(start_date = start_time,
+                                       end_date = end_time,
+                                       spatial_tessellation = dict_weighted_tess[area_tessellation],
+                                       relevance_column = 'relevance',
                                        n_agents = n_agents,
                                        od_matrix = None,
-                                       show_progress = True, 
+                                       show_progress = True,
                                        random_state = 42)
     print('\nDitras measures:')
     ditras_measures = compute_measures(ditras_tdf)
@@ -167,23 +167,23 @@ def build_model(area_tessellation, n_agents, n_individuals):
     return real_measures, sepr_measures, depr_measures, ditras_measures
 
 # %%
-# Building models and plotting the results  
+# Building models and plotting the results
 def plot_comparison(area_tessellation, n_agents, show_real):
     if area_tessellation in dict_area_tess_names.keys():
         real_measures, sepr_measures, depr_measures, ditras_measures = build_model(area_tessellation, n_agents, n_individuals = number_individuals)
     else:
         return print("Please input a valid area and tessellation pair, e.g. 'a1_t1' to work on NY State with squared tessellation")
 
-    list_measures = ["Travel Distance (Jump Length)", 
-                     "Radius of Gyration", 
-                     "Uncorrelated Entropy", 
-                     "Distinct visited Locations", 
-                     "Visits per Location", 
+    list_measures = ["Travel Distance (Jump Length)",
+                     "Radius of Gyration",
+                     "Uncorrelated Entropy",
+                     "Distinct visited Locations",
+                     "Visits per Location",
                      "Location Frequency"]
     list_labels = ["Δr", "r_g", "S^{unc}", "N_u", "V_l", "L_i"]
 
     dict_models_measures = {"real": real_measures, "sepr": sepr_measures, "depr": depr_measures, "ditras": ditras_measures}
-    
+
     # Getting x and y for each distribution
     dict_x, dict_y = get_kde(dict_models_measures)
     x_real, x_sepr, x_depr, x_ditras = [dict_x[m] for m in dict_models_measures.keys()]
@@ -210,12 +210,12 @@ def plot_comparison(area_tessellation, n_agents, show_real):
             ax[i,j].set(title = list_measures[k])
             ax[i,j].set(ylabel = "$P({})$".format(list_labels[k]))
             ax[i,j].set(xlabel = "${}$".format(list_labels[k]))
-            
+
             # Style for text box showing RMSE inside plot
             props = dict(boxstyle = 'round', facecolor = 'wheat', alpha = 0.3)
 
             # Showing the RMSE results, depending if the real measures are taken into account
-            if show_real == True: 
+            if show_real == True:
                 ax[i,j].plot(x_real[k], y_real[k], marker = 'D', linestyle = 'dotted', linewidth = 2, markersize = 5, color = 'black', label = 'Real')
                 ax[i,j].text(-.6, .3, fontsize = 12, transform = ax[i,j].transAxes, bbox = props, s = ('RMSE M{} ${}$\n'
                                                                                                        '\n'
@@ -225,19 +225,19 @@ def plot_comparison(area_tessellation, n_agents, show_real):
                                                                                                        '\n'
                                                                                                        'S/D:{}\n'
                                                                                                        'S/Di:{}\n'
-                                                                                                       'D/Di:{}').format(str(k+1),list_labels[k], 
-                                                                                                                         rmse_real_sepr, 
-                                                                                                                         rmse_real_depr, 
+                                                                                                       'D/Di:{}').format(str(k+1),list_labels[k],
+                                                                                                                         rmse_real_sepr,
+                                                                                                                         rmse_real_depr,
                                                                                                                          rmse_real_ditras,
                                                                                                                          rmse_sepr_depr,
                                                                                                                          rmse_sepr_ditras,
-                                                                                                                         rmse_depr_ditras)) 
+                                                                                                                         rmse_depr_ditras))
             else:
                 ax[i,j].text(-.6, .4, fontsize = 12, transform = ax[i,j].transAxes, bbox = props, s = ('RMSE M{} ${}$\n''\nS/D:{}\n''S/Di:{}\n''D/Di:{}').format(str(k+1),
                                                                                                                                                                  list_labels[k],
                                                                                                                                                                  rmse_sepr_depr,
                                                                                                                                                                  rmse_sepr_ditras,
-                                                                                                                                                                 rmse_depr_ditras)) 
+                                                                                                                                                                 rmse_depr_ditras))
             ax[i,j].legend()
             fig.tight_layout()
             k += 1
@@ -276,27 +276,27 @@ def get_voronoi_tessellation(poly_ch, points):
 
 # %% [markdown]
 # The geographical areas to be considered are:
-# 
-# 
-# 
+#
+#
+#
 # 1.   New York State
 # 2.   San Francisco, California
 # 3.   Austin, Texas
 # 4.   Mexico City
-# 
-# 
+#
+#
 
 # %% [markdown]
 # The tessellations to be used are:
-# 
+#
 # 1.   Squared
 # 2.   Hexagonal
 # 3.   Official
 # 4.   Voronoi
-# 
+#
 # Paired with the previously stated geographical areas, the possible combination of areas and tessellations can be identified by the form "a{}_t{}", with the blank spaces representing the number of area and tessellation respectively. For example, the hexagonal tessellation of Austin Texas shall be identified by "a3_t2". This form will be used throught the entirety of this notebook.
-# 
-# 
+#
+#
 
 # %%
 # Official administrative divisions to use as tessellations for each geographical area
@@ -319,15 +319,15 @@ area2_merged_url = 'https://raw.githubusercontent.com/Bruno-Limon/EPR-model-comp
 
 area1_merged = gpd.read_file(area1_merged_url)
 area2_merged = gpd.read_file(area2_merged_url)
-area3_merged = gpd.read_file(url_area3) 
+area3_merged = gpd.read_file(url_area3)
 area3_merged = gpd.GeoSeries(unary_union(area3_merged['geometry']))
-area4_merged = gpd.read_file(url_area4) 
+area4_merged = gpd.read_file(url_area4)
 area4_merged = gpd.GeoSeries(unary_union(area4_merged['geometry']))
 
 # %%
 # Creating squared, hexagonal and official tessellation geodataframes
 
-%%capture
+# %%capture
 list_tessellations = ['squared', 'h3_tessellation', 'official']
 list_official_tessellations = [url_area1, url_area2, url_area3, url_area4]
 list_area_meter_squared = [40000, 1500, 20000, 6000]
@@ -453,7 +453,7 @@ voronoi_points4 = np.array(voronoi_points4)
 
 # %%
 # Producing Voronoi tessellations
-%%capture
+# %%capture
 list_boundaries = [area1_boundary, area2_boundary, area3_boundary, area4_boundary]
 list_voronoi_points = [voronoi_points1, voronoi_points2, voronoi_points3, voronoi_points4]
 
@@ -467,8 +467,8 @@ for i in range(1,len(list_official_tessellations)+1):
 # Looking at number of tiles in each tessellation
 for i in range(1,len(list_official_tessellations)+1):
     for j in range(1,len(list_official_tessellations)+1):
-        print('Tiles in tessellation a{}_t{}: {}'.format(i, j, len(dict_tessellations['a{}_t{}'.format(i, j)])))   
-        if j == 4 and i != 4: print('') 
+        print('Tiles in tessellation a{}_t{}: {}'.format(i, j, len(dict_tessellations['a{}_t{}'.format(i, j)])))
+        if j == 4 and i != 4: print('')
 
 # %% [markdown]
 # Visualizing tessellations
@@ -477,7 +477,7 @@ for i in range(1,len(list_official_tessellations)+1):
 background_color = 'gray'
 tess_color = "tab20b"
 
-fig, ax = plt.subplots(1,4, figsize=(32, 6)) 
+fig, ax = plt.subplots(1,4, figsize=(32, 6))
 fig.suptitle('Basic shapes of geographical areas', fontsize = 28)
 np.vectorize(lambda ax:ax.axis('off'))(ax)
 
@@ -487,7 +487,7 @@ area3_merged.plot(ax = ax[2], color = background_color)
 area4_merged.plot(ax = ax[3], color = background_color)
 
 # %%
-fig, ax = plt.subplots(1,4, figsize=(32, 6)) 
+fig, ax = plt.subplots(1,4, figsize=(32, 6))
 fig.suptitle('Squared tessellations', fontsize = 28)
 np.vectorize(lambda ax:ax.axis('off'))(ax)
 
@@ -502,7 +502,7 @@ dict_tessellations['a3_t1'].plot(ax = ax[2], cmap = tess_color, alpha = .5)
 dict_tessellations['a4_t1'].plot(ax = ax[3], cmap = tess_color, alpha = .5)
 
 # %%
-fig, ax = plt.subplots(1,4, figsize=(32, 6)) 
+fig, ax = plt.subplots(1,4, figsize=(32, 6))
 fig.suptitle('Hexagonal tessellations', fontsize = 28)
 np.vectorize(lambda ax:ax.axis('off'))(ax)
 
@@ -517,7 +517,7 @@ dict_tessellations['a3_t2'].plot(ax = ax[2], cmap = tess_color, alpha = .5)
 dict_tessellations['a4_t2'].plot(ax = ax[3], cmap = tess_color, alpha = .5)
 
 # %%
-fig, ax = plt.subplots(1,4, figsize=(32, 6)) 
+fig, ax = plt.subplots(1,4, figsize=(32, 6))
 fig.suptitle('Official tessellations', fontsize = 28)
 np.vectorize(lambda ax:ax.axis('off'))(ax)
 
@@ -527,7 +527,7 @@ dict_tessellations['a3_t3'].plot(ax = ax[2], cmap = tess_color)
 dict_tessellations['a4_t3'].plot(ax = ax[3], cmap = tess_color)
 
 # %%
-fig, ax = plt.subplots(1,4, figsize=(32, 6)) 
+fig, ax = plt.subplots(1,4, figsize=(32, 6))
 fig.suptitle('Voronoi tessellations', fontsize = 28)
 np.vectorize(lambda ax:ax.axis('off'))(ax)
 
@@ -546,9 +546,9 @@ points4_gdf.plot(ax = ax[3], color = vor_point_color, markersize = markersize)
 
 # %% [markdown]
 # Creating TDFs for each area
-# 
+#
 # Using the following mobility traces datasets:
-# 
+#
 # 1. Brightkite check-ins
 # 2. San Francisco Taxicab traces
 # 3. Gowalla check-ins
@@ -561,7 +561,7 @@ url = "https://snap.stanford.edu/data/loc-brightkite_totalCheckins.txt.gz"
 area1_df = pd.read_csv(url, sep='\t', header=0, nrows = 1000000, names=['user', 'check-in_time', "latitude", "longitude", "location id"])
 area1_tdf = skmob.TrajDataFrame(area1_df, latitude='latitude', longitude='longitude', datetime='check-in_time', user_id='user')
 print("Users: ", len(area1_tdf.uid.unique()))
-print('Records: ', len(area1_tdf)) 
+print('Records: ', len(area1_tdf))
 area1_tdf.head()
 
 # %%
@@ -574,7 +574,7 @@ for _, row in dict_tessellations['a1_t3'].iterrows():
     geo_j = sim_geo.to_json()
     geo_j = folium.GeoJson(data=geo_j, style_function = lambda x: {'fillColor': '#98ff69', 'color': 'white'})
     geo_j.add_to(map_f)
-    
+
 area1_tdf.plot_trajectory(map_f = map_f, max_users = 20, weight = 1, max_points = None, opacity=0.9, start_end_markers = False)
 
 # %%
@@ -612,7 +612,7 @@ for _, row in dict_tessellations['a2_t3'].iterrows():
     geo_j = folium.GeoJson(data=geo_j, style_function = lambda x: {'fillColor': '#98ff69', 'color': 'white'})
     folium.Popup(row['nhood']).add_to(geo_j)
     geo_j.add_to(map_f)
-    
+
 area2_tdf.plot_trajectory(map_f = map_f, hex_color = '#59fff7', max_users = 1, zoom = 12, weight = 1, max_points = 200, opacity=0.9, start_end_markers = False)
 
 # %%
@@ -636,7 +636,7 @@ for _, row in dict_tessellations['a3_t3'].iterrows():
     geo_j = folium.GeoJson(data=geo_j, style_function = lambda x: {'fillColor': '#98ff69', 'color': 'white'})
     folium.Popup(row['county_name']).add_to(geo_j)
     geo_j.add_to(map_f)
-    
+
 area3_tdf.plot_trajectory(map_f = map_f, max_users = 50, weight = 1, max_points = None, opacity=0.9, start_end_markers = False)
 
 # %%
@@ -664,14 +664,14 @@ for _, row in dict_tessellations['a4_t3'].iterrows():
     geo_j = folium.GeoJson(data=geo_j, style_function = lambda x: {'fillColor': '#98ff69', 'color': 'white'})
     folium.Popup(row['nomgeo']).add_to(geo_j)
     geo_j.add_to(map_f)
-    
+
 area4_tdf.plot_trajectory(map_f = map_f, max_users = 1, hex_color = '#59fff7', weight = 1, max_points = 200, opacity = 0.9, start_end_markers = False)
 
 # %% [markdown]
 # TDFS for the real traces dataframes
 
 # %%
-%%capture
+# %%capture
 list_areas_tdfs = [area1_tdf, area2_tdf, area3_tdf, area4_tdf]
 list_tessellations = ['squared', 'hexagonal', 'official', 'voronoi']
 dict_real_tdfs = {}
@@ -681,7 +681,7 @@ for i in range(1, len(list_areas_tdfs)+1):
     for j in range(1, len(list_tessellations)+1):
         # Mapping area traces with tessellation
         dict_real_tdfs['a{}_t{}'.format(i,j)] = list_areas_tdfs[i-1].mapping(dict_tessellations['a{}_t{}'.format(i,j)], remove_na=True)
-        
+
         # Counting visits per tile to use as parameter for weighted tessellation
         visits_per_tile = dict_real_tdfs['a{}_t{}'.format(i,j)].groupby("tile_ID", as_index=False).count()
         visits_per_tile = visits_per_tile[["tile_ID", "uid"]]
@@ -716,14 +716,14 @@ for i in range(1, len(list_areas_tdfs)+1):
 
 # %% [markdown]
 # The comparison among distributions is made on an area_tessellation basis, computing 6 measures of model realism, they are as follows:
-# 
+#
 # 1. Travel Distance
 # 2. Radius of Gyration
 # 3. Uncorrelated Entropy
 # 4. Distinct Visited Locations
 # 5. Visits per Location
 # 6. Location Frequency
-# 
+#
 # Then, the distribution for each of these measures across all models is plotted, together with the RMSE of their pairs
 
 # %%
