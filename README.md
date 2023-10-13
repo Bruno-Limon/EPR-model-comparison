@@ -64,6 +64,8 @@ While the tessellations are as follows:
 
 Furthermore, a set of real trajectory datasets has been obtained for each area, with social media check-ins for area 1 and 3 and taxi cab gps trajectories for areas 2 and 4.
 
+<img alt="voronoi tessellations" src="readme-assets/trajectories-SF.png">
+
 Then, 3 models, namely S-EPR, D-EPR and ditras are built and used to generate a set of trajectories for each pair of areas and tessellations, which will then be compared both quantitatively by the distributions of their measures and their root mean squared error as well as qualitatively through the use of plotting.
 Throughout this project, the notation 'a1[]_t[]' is used to identify the area and its tessellation, for example 'a1_t1' would correspond to New York State with squared tessellation.
 
