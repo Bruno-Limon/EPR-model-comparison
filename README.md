@@ -5,9 +5,9 @@ Conducted and developed by:
 
 Under the guidance of professors:
 - Luca Pappalardo
-- Mirco Nanni <br/><br/>
-@ Università di Pisa, Italy <br/><br/>
-Geospatial Analytics Course
+- Mirco Nanni
+
+@ Università di Pisa, Italy - Geospatial Analytics Course
 
 <img alt="License" src="https://img.shields.io/badge/license-MIT-red"> <img alt="Python" src="https://img.shields.io/badge/python->=3.8-blue"> <img alt="Python" src="https://img.shields.io/badge/pylint-9.05-orange"> <img alt="Python" src="https://img.shields.io/badge/last_commit-april_2023-green">
 
@@ -87,3 +87,6 @@ Bruno Limon
 ## Acknowledgements
 
 - <a href = "https://scikit-mobility.github.io/scikit-mobility/"> Scikit-mobility</a>
+
+<br><hr>
+[🔼 Back to the top](#)
