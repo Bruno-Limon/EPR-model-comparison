@@ -1,17 +1,4 @@
-<img alt="License" src="https://img.shields.io/badge/license-MIT-brightgreen"> <img alt="Python" src="https://img.shields.io/badge/python->=3.8-brightgreen">
-
-<!-- --------------------------------------------------------------------------------------- -->
-<!-- TABLE OF CONTENTS -->
-<details>
-  <summary>Table of Contents</summary>
-  <ol>
-    <li><a href="#INTRODUCTION">INTRODUCTION</a></li>
-    <li><a href="#METHOD">METHOD</a></li>
-    <li><a href="#RESULTS">RESULTS</a></li>
-  </ol>
-</details>
-
-Exploration and Preferential Return (EPR), a generative human mobility model and comparison of some of its variants.
+<strong>Exploration and Preferential Return (EPR)</strong>, a generative human mobility model and comparison of some of its variants.
 
 Conducted and developed by:
 - Bruno Limon
@@ -23,7 +10,20 @@ Under the guidance of professors:
 Geospatial Analytics Course
 
 <!-- --------------------------------------------------------------------------------------- -->
-## INTRODUCTION
+<!-- TABLE OF CONTENTS -->
+<details>
+  <summary>Table of Contents</summary>
+  <ol>
+    <li><a href="#Introduction">Introduction</a></li>
+    <li><a href="#Method">Method</a></li>
+    <li><a href="#Results">Results</a></li>
+    <li><a href="#Contact">Contact</a></li>
+    <li><a href="#Acknowledgements">Acknowledgements</a></li>
+  </ol>
+</details>
+
+<!-- --------------------------------------------------------------------------------------- -->
+## Introduction
 
 This project aims to present a systematic comparison of EPR models to produce synthetic trajectories of human mobility, reproducing the movements of an individual in a realistic manner. 3 variants of this model are presented:
 
@@ -41,7 +41,7 @@ M5. Visits per Location
 M6. Location Frequency
 
 <!-- --------------------------------------------------------------------------------------- -->
-## METHOD
+## Method
 
 To test the capabilities of the previously presented models, a systematic comparison is made by using them to build synthetic trajectories in 4 different geographical areas, each with 4 different spatial tessellations. The areas to analyze are:
 
@@ -63,20 +63,21 @@ Then, 3 models, namely S-EPR, D-EPR and ditras are built and used to generate a 
 Throughout this project, the notation 'a1[]_t[]' is used to identify the area and its tessellation, for example 'a1_t1' would correspond to New York State with squared tessellation.
 
 <!-- --------------------------------------------------------------------------------------- -->
-## RESULTS
+## Results
 
 Overall, all three models perform relative well, with measures such as M1 and M6 with good results all-around, regardless of area, tessellation or model, while for some other measures, such as M4 and M5, the synthetic distributions greatly differ from those observed on the real trajectories. However, Ditras and D-EPR seem to perform better, as their distributions at least somewhat resemble the power-law distribution expected of measures such as M3 for example, whereas S-EPR produces a completely different type of distribution.
 All in all, as expected, the S-EPR model and its trajectories seem to be the worst performing due to their lack of spatio-temporal awareness, which D-EPR and Ditras seem to solve.
 
 <!-- --------------------------------------------------------------------------------------- -->
-## CONTACT
+## Contact
 
 Bruno Limon 
 - bruno.limon.avila@gmail.com
 
 <!-- --------------------------------------------------------------------------------------- -->
-## ACKNOWLEDGEMENTS
+## Acknowledgements
 
 - <a href="https://scikit-mobility.github.io/scikit-mobility/"> Scikit-mobility</a>
 
+<img alt="License" src="https://img.shields.io/badge/license-MIT-brightgreen"> <img alt="Python" src="https://img.shields.io/badge/python->=3.8-blue">
 
