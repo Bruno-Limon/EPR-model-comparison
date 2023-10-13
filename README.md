@@ -9,7 +9,7 @@ Under the guidance of professors:
 @ Università di Pisa, Italy
 Geospatial Analytics Course
 
-<img alt="License" src="https://img.shields.io/badge/license-MIT-brightgreen"> <img alt="Python" src="https://img.shields.io/badge/python->=3.8-blue"> <img alt="Python" src="https://img.shields.io/badge/pylint-9.05-orange"> <img alt="Python" src="https://img.shields.io/badge/last_commit-april_2023-red">
+<img alt="License" src="https://img.shields.io/badge/license-MIT-red"> <img alt="Python" src="https://img.shields.io/badge/python->=3.8-blue"> <img alt="Python" src="https://img.shields.io/badge/pylint-9.05-orange"> <img alt="Python" src="https://img.shields.io/badge/last_commit-april_2023-green">
 
 <!-- --------------------------------------------------------------------------------------- -->
 <!-- TABLE OF CONTENTS -->
@@ -35,12 +35,12 @@ This project aims to present a systematic comparison of EPR models to produce sy
 
 The goal is to observe and compare the statistical distributions of measures of realness for the synthetic trajectories obtained with these models. These measures are:
 
-M1. Travel Distance
-M2. Radius of Gyration
-M3. Uncorrelated Entropy
-M4. Distinct Visited Locations
-M5. Visits per Location
-M6. Location Frequency
+- M1. Travel Distance
+- M2. Radius of Gyration
+- M3. Uncorrelated Entropy
+- M4. Distinct Visited Locations
+- M5. Visits per Location
+- M6. Location Frequency
 
 <!-- --------------------------------------------------------------------------------------- -->
 ## Method
