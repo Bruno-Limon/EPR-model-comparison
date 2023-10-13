@@ -1,6 +1,10 @@
 ================================================================================================================
 Exploration and Preferential Return (EPR), a generative human mobility model and comparison of some of its variants.
 
+<!-- LATESTCOMMIT:START -->
+
+<!-- LATESTCOMMIT:END -->
+
 Conducted and developed by:
 - Bruno Limón
 
